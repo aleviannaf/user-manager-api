@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createUserService, deleteUserService, readUserByIdService, readUserService, upadteUserServive } from "../services/user.service"
+import { createUserService, deleteUserService, readUserService, upadteUserServive } from "../services/user.service"
 import User from "../entities/User.entity"
 
 export const createUserController = async (req: Request, res: Response): Promise<Response> =>{

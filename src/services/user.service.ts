@@ -1,5 +1,4 @@
 import User from "../entities/User.entity";
-import AppError from "../errors/AppError.error";
 import { useRepository } from "../repositories";
 
 export const createUserService = async (data: Omit<User, 'id'>): Promise<User> =>{
