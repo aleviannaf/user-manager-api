@@ -14,16 +14,6 @@ export const readUserService = async (): Promise<User[]> =>{
     return users
 }
 
-export const readUserByIdService = async (userId: number): Promise<User> =>{
-    const user: User | null = await useRepository.findOneBy({id: userId})
-
-    if(!user){
-        throw new AppError('User not found', 404)
-    }
-
-    return user
-}
-
 export const upadteUserServive = async (user: User, data: Partial<User>): Promise<User> =>{
     return await useRepository.save({...user, ...data})
 }
