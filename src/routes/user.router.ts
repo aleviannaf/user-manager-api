@@ -4,8 +4,10 @@ import { verifyIdexist } from "../middlewares/verifyIdExist.middleware"
 
 export const userRouter: Router = Router()
 
+userRouter.use('/:userId', verifyIdexist)
+
 userRouter.post('/', createUserController)
 userRouter.get('/', readUserController)
-userRouter.patch('/:userId', verifyIdexist, updateUserController)
-userRouter.get('/:userId', verifyIdexist, readUserByIdController)
-userRouter.delete('/:userId', verifyIdexist, deleteUserController)
+userRouter.patch('/:userId', updateUserController)
+userRouter.get('/:userId', readUserByIdController)
+userRouter.delete('/:userId', deleteUserController)
