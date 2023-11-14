@@ -25,7 +25,8 @@ export const updateUserController = async (req: Request, res: Response): Promise
 } 
 
 export const deleteUserController = async (req: Request, res: Response): Promise<Response> =>{
-    await deleteUserService(Number(res.locals.foundUser.id))
+    const { foundUser } = res.locals.foundUser
+    await deleteUserService(foundUser)
 
     return res.status(204).send()
 } 
