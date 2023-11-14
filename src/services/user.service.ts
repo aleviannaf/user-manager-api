@@ -18,12 +18,6 @@ export const upadteUserServive = async (user: User, data: Partial<User>): Promis
     return await useRepository.save({...user, ...data})
 }
 
-export const deleteUserService = async (userId: number):Promise<void>=>{
-    const user: User | null = await useRepository.findOneBy({id: userId})
-
-    if(!user){
-        throw new AppError('User not found', 404)
-    }
-
+export const deleteUserService = async (user: User):Promise<void>=>{
     await useRepository.remove(user)
 }
