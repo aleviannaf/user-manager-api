@@ -15,9 +15,7 @@ export const readUserController = async (req: Request, res: Response): Promise<R
 } 
 
 export const readUserByIdController = async (req: Request, res: Response): Promise<Response> =>{
-    const user: User = await readUserByIdService(Number(res.locals.foundUser.id))
-
-    return res.status(200).json(user)
+    return res.status(200).json(res.locals.foundUser)
 } 
 
 export const updateUserController = async (req: Request, res: Response): Promise<Response> =>{
