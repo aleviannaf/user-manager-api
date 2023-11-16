@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { createUserService, deleteUserService, readUserService, upadteUserServive } from "../services/user.service"
 import User from "../entities/User.entity"
+import { Pagination } from "../interfaces/pagination.interface"
 
 export const createUserController = async (req: Request, res: Response): Promise<Response> =>{
     const user: User = await createUserService(req.body)
@@ -9,9 +10,9 @@ export const createUserController = async (req: Request, res: Response): Promise
 }
 
 export const readUserController = async (req: Request, res: Response): Promise<Response> =>{
-    const users: User[] = await readUserService()
+    const data: Pagination = await readUserService(res.locals.pagination)
 
-    return res.status(200).json(users)
+    return res.status(200).json(data)
 } 
 
 export const readUserByIdController = async (req: Request, res: Response): Promise<Response> =>{
