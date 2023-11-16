@@ -1,9 +1,10 @@
 import User from "../entities/User.entity";
 import { Pagination, PaginationParamns } from "../interfaces/pagination.interface";
-import { useRepository } from "../repositories";
+import { UserUpdate } from "../interfaces/user.interface";
+import { userRepository } from "../repositories";
 
 export const createUserService = async (data: Omit<User, 'id'>): Promise<User> => {
-    const newUser: User = await useRepository.save(data)
+    const newUser: User = await userRepository.save(data)
 
     return newUser
 }
@@ -17,7 +18,7 @@ export const readUserService = async (
     }: PaginationParamns
 ): Promise<Pagination> => {
 
-    const [users, count] = await useRepository.findAndCount({
+    const [users, count] = await userRepository.findAndCount({
         skip: page, // offset
         take: perPage, // limit
     })
@@ -31,10 +32,10 @@ export const readUserService = async (
     }
 }
 
-export const upadteUserServive = async (user: User, data: Partial<User>): Promise<User> => {
-    return await useRepository.save({ ...user, ...data })
+export const upadteUserServive = async (user: User, data: UserUpdate): Promise<User> => {
+    return await userRepository.save({ ...user, ...data })
 }
 
 export const deleteUserService = async (user: User): Promise<void> => {
-    await useRepository.remove(user)
+    await userRepository.remove(user)
 }
