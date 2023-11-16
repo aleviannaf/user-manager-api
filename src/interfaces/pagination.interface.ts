@@ -1,10 +1,10 @@
-import User from "../entities/User.entity"
+import { UserRead } from "./user.interface"
 
 export type Pagination = {
     prevPage: string | null
     nextPage: string | null
     count: number,
-    data: Array<User>
+    data: UserRead
 }
 
 export type PaginationParamns = {
